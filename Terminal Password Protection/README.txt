@@ -1,16 +1,16 @@
 Password Validation PowerShell Script
 
-**Introduction**
-```
+Introduction
+
 This PowerShell script, written by CaliNux, is designed to validate a user-entered password against a pre-defined encrypted password. The script prompts the user to enter the password and compares it with the decrypted password stored in a specified file. It allows a maximum number of attempts before displaying an error message and imposing a brief delay.
 Prerequisites
-```
-**Before running the script, ensure the following prerequisites are met:**
-```
+
+Before running the script, ensure the following prerequisites are met:
+
     Encrypted Password File: The encrypted password file must be created and accessible at the specified location.
-```
-**Instructions**
-```
+
+Instructions
+
 Follow these steps to use the script:
 
     Define the Encrypted Password File: Update the $encryptedPasswordFile variable with the path to your encrypted password file.
@@ -36,11 +36,11 @@ Running the Script
     If the entered password is correct, the script will exit.
 
     If the entered password is incorrect, the script will provide feedback and allow for additional attempts until the maximum limit is reached.
-```
-**Important Notes**
-```
+
+Important Notes
+
     Make sure to keep the encrypted password file secure and accessible only to authorized users.
 
     The script does not permanently lock the user out after reaching the maximum attempts. To reset the attempts, rerun the script.
 
-    Always handle encrypted password files and sensitive data with utmost care and security.```
+    Always handle encrypted password files and sensitive data with utmost care and security.
