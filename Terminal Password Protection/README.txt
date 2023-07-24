@@ -16,7 +16,7 @@ Instructions
 
 Follow these steps to use the script:
 
-    Define the Encrypted Password File: Update the $encryptedPasswordFile variable with the path to your encrypted password file.
+    Run the "CreatePassword.ps1" to generate a new password file (yeet.txt). Delete this file at any time to remove the password.
 
     Set Maximum Attempts: The $maxAttempts variable determines the maximum number of password entry attempts allowed.
 
@@ -41,6 +41,8 @@ Running the Script
     If the entered password is incorrect, the script will provide feedback and allow for additional attempts until the maximum limit is reached.
 
 Important Notes
+
+    CreatePassword.ps1 must run first to create the encrypted password file or the script will fail.
 
     Make sure to keep the encrypted password file secure and accessible only to authorized users.
 
