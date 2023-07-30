@@ -29,5 +29,5 @@ function Get-PicDoc {
 }
 
 # Example usage:
-$DropBoxToken = "YOUR DROPBOX TOKEN HERE"
-Get-PicDoc -DropBoxAccessToken $DropBoxToken
+#$DropBoxToken = "YOUR DROPBOX TOKEN HERE"
+#Get-PicDoc -DropBoxAccessToken $DropBoxToken
