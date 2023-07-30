@@ -1,5 +1,5 @@
 Description
-The CaliLoot PowerShell script is designed to copy specific folders from the user's computer to a designated folder on Dropbox using the Dropbox API. This script requires a Dropbox access token to function correctly. It is intended for users who want to back up certain folders, such as 'MyDocuments' and 'MyPictures', to their Dropbox account.
+The CaliLoot PowerShell script is designed to copy specific folders from the user's computer to a designated folder on Dropbox using the Dropbox API. This script requires a Dropbox access token to function correctly. 
 
 Prerequisites
 Before running the script, ensure you have the following:
