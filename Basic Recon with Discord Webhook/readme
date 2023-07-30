@@ -1,0 +1,38 @@
+Get-Recon Script
+
+The Get-Recon script is a PowerShell script that gathers information about the system's geolocation, network configuration, users, firewall status, antivirus information, and WiFi SSIDs and passwords. It then saves this information to a text file and optionally uploads it to a Discord channel using a webhook.
+Usage
+
+    Ensure you have PowerShell installed on your system.
+    Copy the contents of the script and save them to a file with a .ps1 extension (e.g., GetRecon.ps1).
+
+Dependencies
+
+The script uses some PowerShell cmdlets that come with Windows by default:
+
+    Invoke-RestMethod: Used to fetch geolocation information from the ip-api.com API.
+    Get-WmiObject: Used to retrieve network configuration information.
+    Get-NetFirewallProfile: Used to check the status of the firewall.
+    Get-CimInstance: Used to get information about installed antivirus products.
+
+Function: Get-Recon
+
+This function performs the following tasks:
+
+    Retrieves geolocation information (IP, country, region, city, latitude, longitude, timezone, and ISP) using the ip-api.com API.
+    Retrieves network configuration information (private IP, subnet, default gateway, and DNS servers) using WMI.
+    Lists all user accounts on the system.
+    Checks the status of the firewall (enabled or disabled).
+    Retrieves information about installed antivirus products.
+    Lists the available WiFi SSIDs and passwords (requires a Get-Networks cmdlet, which is not defined in the script).
+
+The collected information is saved to a text file named CaliLoot.txt in the system's temporary directory ($env:TEMP).
+Function: Upload-Discord
+
+This function allows you to upload the generated text file to a Discord channel using a webhook. It takes three parameters:
+
+    $file: The path to the file that should be uploaded (e.g., "$env:TEMP\CaliLoot.txt").
+    $text: A custom text message (optional) that will be sent along with the file.
+    $webhookUrl: Your Discord webhook URL. Replace 'YOUR DISCORD WEBHOOK HERE' with the actual webhook URL to enable uploading to Discord.
+
+Note: The script uses the Out-Null cmdlet when invoking Upload-Discord, which means the output won't be displayed in the console.
