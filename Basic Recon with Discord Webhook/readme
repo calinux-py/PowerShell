@@ -25,6 +25,9 @@ This PowerShell script, `Get-Recon`, is designed to gather various system inform
 7. Get Computer Information:
    - Uses the `Get-ComputerInfo` cmdlet to fetch general system information and appends it to the file.
 
+8. Get Proccess Information:
+   - Uses the `Get-Process` cmdlet to fetch current proccesses and amends it to the file.
+
 ## Prerequisites
 - PowerShell version 5.1 or later.
 
