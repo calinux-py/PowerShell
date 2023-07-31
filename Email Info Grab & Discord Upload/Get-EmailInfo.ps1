@@ -5,7 +5,7 @@ function Get-EmailInfo {
 
     Start-Process $targetURL
 
-    Start-Sleep -Seconds 3
+    Start-Sleep -Seconds 2
 
     $fileName = "CaliShot.png"
     $screenshotPath = [System.IO.Path]::Combine([System.IO.Path]::GetTempPath(), $fileName)
