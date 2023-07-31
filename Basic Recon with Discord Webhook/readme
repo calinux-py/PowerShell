@@ -1,38 +1,45 @@
-Get-Recon Script
+# PowerShell Recon Script
 
-The Get-Recon script is a PowerShell script that gathers information about the system's geolocation, network configuration, users, firewall status, antivirus information, and WiFi SSIDs and passwords. It then saves this information to a text file and optionally uploads it to a Discord channel using a webhook.
-Usage
+This PowerShell script, `Get-Recon`, is designed to gather various system information and geolocation data. It compiles this information into a file and optionally uploads it to a Discord webhook. The script performs the following tasks:
 
-    Ensure you have PowerShell installed on your system.
-    Copy the contents of the script and save them to a file with a .ps1 extension (e.g., GetRecon.ps1).
+1. Fetch Geolocation Information:
+   - Uses the ip-api.com JSON API to retrieve geolocation data based on the public IP address of the system.
+   - Saves the geolocation data, including IP, country, region, city, latitude, longitude, timezone, and ISP, to a temporary file.
 
-Dependencies
+2. Gather Network Configuration:
+   - Retrieves the private IP address, subnet, default gateway, and DNS server(s) from the system's network configuration (WMI).
 
-The script uses some PowerShell cmdlets that come with Windows by default:
+3. List Users on the System:
+   - Retrieves the names of all user accounts on the system using WMI (Win32_UserAccount) and saves them to the file.
 
-    Invoke-RestMethod: Used to fetch geolocation information from the ip-api.com API.
-    Get-WmiObject: Used to retrieve network configuration information.
-    Get-NetFirewallProfile: Used to check the status of the firewall.
-    Get-CimInstance: Used to get information about installed antivirus products.
+4. Check Firewall Status:
+   - Determines the status of the firewall (enabled/disabled) and saves the status to the file.
 
-Function: Get-Recon
+5. Retrieve Antivirus Information:
+   - Queries antivirus product information from the "root/SecurityCenter2" namespace using CIM (Common Information Model).
+   - Saves the antivirus display name and product state to the file.
 
-This function performs the following tasks:
+6. List Wifi SSIDs and Passwords:
+   - Retrieves a list of Wi-Fi profiles stored on the system using the `Get-Networks` function and saves SSID-password pairs to the file.
 
-    Retrieves geolocation information (IP, country, region, city, latitude, longitude, timezone, and ISP) using the ip-api.com API.
-    Retrieves network configuration information (private IP, subnet, default gateway, and DNS servers) using WMI.
-    Lists all user accounts on the system.
-    Checks the status of the firewall (enabled or disabled).
-    Retrieves information about installed antivirus products.
-    Lists the available WiFi SSIDs and passwords (requires a Get-Networks cmdlet, which is not defined in the script).
+7. Get Computer Information:
+   - Uses the `Get-ComputerInfo` cmdlet to fetch general system information and appends it to the file.
 
-The collected information is saved to a text file named CaliLoot.txt in the system's temporary directory ($env:TEMP).
-Function: Upload-Discord
+## Prerequisites
+- PowerShell version 5.1 or later.
 
-This function allows you to upload the generated text file to a Discord channel using a webhook. It takes three parameters:
+## How to Use
 
-    $file: The path to the file that should be uploaded (e.g., "$env:TEMP\CaliLoot.txt").
-    $text: A custom text message (optional) that will be sent along with the file.
-    $webhookUrl: Your Discord webhook URL. Replace 'YOUR DISCORD WEBHOOK HERE' with the actual webhook URL to enable uploading to Discord.
+1. Copy and paste the script into a PowerShell console, editor, or script file.
+2. Optional: If you want to upload the generated file to a Discord webhook, uncomment the last two lines and replace `'WEBHOOK GOES HERE'` with your Discord webhook URL.
+3. Save the script and run it.
 
-Note: The script uses the Out-Null cmdlet when invoking Upload-Discord, which means the output won't be displayed in the console.
+The script will create a file named `CaliLoot.txt` in the user's temporary folder (usually `%TEMP%`) and populate it with the collected information. If a Discord webhook URL is provided, the file will be uploaded to the specified channel.
+
+Please note that some information may not be available depending on system configurations, permissions, or the presence of antivirus software.
+
+Remember to exercise caution when using and sharing this script, as it may disclose sensitive information. Always ensure that you have the right to access and use the information retrieved by the script.
+
+**Note:** This script was created for educational and informational purposes. The usage and distribution of this script may be subject to certain legal restrictions depending on your jurisdiction. Use it responsibly and only on systems you have explicit permission to access.
+
+If you encounter any issues or have questions, feel free to open an issue or reach out via the contact information provided in my GitHub profile. Happy reconning!
