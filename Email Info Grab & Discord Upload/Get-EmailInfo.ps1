@@ -5,7 +5,7 @@ function Get-EmailInfo {
 
     Start-Process $targetURL
 
-    Start-Sleep -Seconds 2
+    Start-Sleep -Seconds 3
 
     # Press the down arrow 3 times
     [System.Windows.Forms.SendKeys]::SendWait("{DOWN 8}")
