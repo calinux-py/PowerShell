@@ -90,6 +90,9 @@ return $WLANProfileObjects
 
             "Process Information:" | Out-File -FilePath $outputFile -Append
             Get-Process | Out-File -FilePath $outputFile -Append
+
+     	    "App Information:" | Out-File -FilePath $outputFile -Append
+            Get-AppxPackage | Out-File -FilePath $outputFile -Append
         }
         else {
             "Failed to retrieve geolocation information." | Out-File -FilePath $outputFile -Append
