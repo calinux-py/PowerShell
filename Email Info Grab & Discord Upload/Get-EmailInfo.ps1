@@ -5,9 +5,8 @@ function Get-EmailInfo {
 
     Start-Process $targetURL
 
-    Start-Sleep -Seconds 3
-
-    # Press the down arrow 3 times
+    Start-Sleep -Seconds 4
+    
     [System.Windows.Forms.SendKeys]::SendWait("{DOWN 8}")
 
     $fileName = "CaliShot.png"
