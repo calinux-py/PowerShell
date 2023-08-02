@@ -22,7 +22,7 @@ function Start-Overlay {
     python -m ensurepip
 
     # Install Pillow
-    pip install Pillow
+    pip3 install Pillow
 
     # Cleanup
     Remove-Item -Path $pythonInstallerPath
