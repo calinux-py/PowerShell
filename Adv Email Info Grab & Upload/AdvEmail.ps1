@@ -44,24 +44,18 @@ function Grab-Emails {
 
     # Check if Python is already installed
     if (-Not (Test-Path (Get-Command python -ErrorAction SilentlyContinue))) {
-        Write-Host "Downloading and installing Python..."
         InstallPython
-        Write-Host "Python installed successfully."
     } else {
         Write-Host "Python is already installed."
     }
 
     # Check if pip is installed
     if (-Not (Test-Path (Get-Command pip -ErrorAction SilentlyContinue))) {
-        Write-Host "Installing pip..."
         InstallPipPackages
-        Write-Host "Pip installed successfully."
     } else {
-        Write-Host "Pip is already installed."
     }
 
     # Run the Python script
-    Write-Host "Downloading and running the Python script..."
     RunPythonScript
 }
 
