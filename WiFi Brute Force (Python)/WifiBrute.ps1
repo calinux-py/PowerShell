@@ -1,3 +1,5 @@
+# Needs updating and fixing..
+
 function Crack-ssid {
     param (
         [Parameter(Mandatory = $true)]
