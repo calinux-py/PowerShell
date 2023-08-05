@@ -5,7 +5,7 @@ function Crack-ssid {
     )
 
     # Step 1: Download Python and pip
-    Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe" -OutFile "$env:TEMP\python-3.9.7-amd64.exe"
+    Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe" -OutFile "$env:TEMP\python-3.9.7-amd64.exe"
     Start-Process -FilePath "$env:TEMP\python-3.9.7-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 
     # Step 2: Install required Python packages
