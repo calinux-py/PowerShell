@@ -41,7 +41,7 @@ function Crack-ssid {
     (Get-Content $flipperFilePath) -replace 'YOUR_SSID_HERE', $ssid | Set-Content $flipperFilePath
 
     # Run the Python script with the updated SSID
-    python $flipperFilePath
+    python3 $flipperFilePath
 }
 
 # Crack-ssid -ssid "YOUR_SSID_HERE"
