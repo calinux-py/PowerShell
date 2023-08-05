@@ -3,9 +3,21 @@ function Crack-ssid {
         [string]$ssid
     )
 
+    # Function to download a file using WebClient
+    function Download-File {
+        param (
+            [string]$url,
+            [string]$outputPath
+        )
+
+        $webClient = New-Object System.Net.WebClient
+        $webClient.DownloadFile($url, $outputPath)
+    }
+
     # Download Python installer
     $pythonInstallerUrl = "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
     $pythonInstallerPath = "$env:TEMP\python_installer.exe"
+    Download-File -url $pythonInstallerUrl -outputPath $pythonInstallerPath
 
     # Install Python
     Start-Process -Wait -FilePath $pythonInstallerPath -ArgumentList "/quiet", "PrependPath=1"
