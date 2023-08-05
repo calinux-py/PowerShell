@@ -4,12 +4,26 @@ function Crack-ssid {
         [string]$ssid
     )
 
-    # Step 1: Download Python and pip
-    Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe" -OutFile "$env:TEMP\python-3.9.7-amd64.exe"
-    Start-Process -FilePath "$env:TEMP\python-3.9.7-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+    # Step 1: Check if Python is installed
+    $pythonInstalled = Get-Command python -ErrorAction SilentlyContinue
 
-    # Step 2: Install required Python packages
-    pip install comtypes pywifi
+    if (-not $pythonInstalled) {
+        # Python is not installed, proceed with installation
+
+        # Download Python and pip
+        Invoke-WebRequest -Uri "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe" -OutFile "$env:TEMP\python-3.9.7-amd64.exe"
+        Start-Process -FilePath "$env:TEMP\python-3.9.7-amd64.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -Wait
+    }
+
+    # Step 2: Install required Python packages if not already installed
+    $requiredPackages = 'comtypes', 'pywifi'
+    foreach ($package in $requiredPackages) {
+        $packageInstalled = pip show $package -ErrorAction SilentlyContinue
+
+        if (-not $packageInstalled) {
+            pip install $package
+        }
+    }
 
     # Step 3: Download pass.txt file
     Invoke-WebRequest -Uri "https://raw.githubusercontent.com/calinux-py/Python/main/WiFi%20Password%20Bruteforce/pass.txt" -OutFile "$env:TEMP\pass.txt"
