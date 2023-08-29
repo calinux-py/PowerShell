@@ -1,4 +1,5 @@
 # PowerShell Recon Script
+![](https://img.shields.io/badge/-PowerShell-blue)
 
 This PowerShell script, `Get-Recon`, is designed to gather various system information and geolocation data. It compiles this information into a file and optionally uploads it to a Discord webhook. The script performs the following tasks:
 
