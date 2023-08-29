@@ -1,3 +1,6 @@
+![](https://img.shields.io/badge/-PowerShell-blue)
+
+
 Description
 
 This PowerShell script provides two functions: Get-AppInfo and Upload-Discord. The Get-AppInfo function retrieves information about the installed applications on the local machine and saves the results to a temporary file. The Upload-Discord function allows you to upload the generated file or send a custom message to a Discord channel through a webhook.
