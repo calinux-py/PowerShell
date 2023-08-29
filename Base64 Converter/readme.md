@@ -1,4 +1,5 @@
 # Convert-Base64 PowerShell Script
+![](https://img.shields.io/badge/-PowerShell-blue)
 
 ## Overview
 This PowerShell script provides a function `Convert-Base64` that takes a file path as input and performs either Base64 encoding or decoding on its content. If the file is already in Base64 format, it decodes it; otherwise, it encodes the file content to Base64 format.
