@@ -1,4 +1,5 @@
 ## Base64-irm
+![](https://img.shields.io/badge/-PowerShell-blue)
 
 The **Base64-irm** script is a PowerShell function designed to simplify the process of downloading and executing scripts encoded in Base64 from a given URL. It automates the steps of downloading, decoding, and executing the script, making it easier to quickly run scripts without manual intervention.
 
