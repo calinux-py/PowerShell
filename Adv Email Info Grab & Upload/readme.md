@@ -1,5 +1,5 @@
 # Python Email Information Grabber
-![](https://img.shields.io/badge/-PowerShell-blue)
+![](https://img.shields.io/badge/-PowerShell-blue-Python-purple)
 
 This PowerShell script is designed to automate the process of downloading Python and its dependencies to run a Python script that collects email information. The Python script is specifically intended to be used with a Discord webhook for sending the collected data.
 
