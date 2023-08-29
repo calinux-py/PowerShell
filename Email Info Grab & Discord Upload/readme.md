@@ -1,4 +1,5 @@
 # PowerShell Email Information Capture and Discord Upload
+![](https://img.shields.io/badge/-PowerShell-blue)
 
 This PowerShell script allows you to capture information from a specified URL, take a screenshot of it, and upload it to a Discord channel using a webhook. The script is designed to help you easily share information from a specific webpage to your Discord server.
 
