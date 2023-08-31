@@ -129,4 +129,4 @@ function Get-Discord {
     }
 }
 
-Get-Discord -WebhookUrl "YOUR DISCORD WEBHOOK"
+Get-Discord #-WebhookUrl "YOUR DISCORD WEBHOOK"
