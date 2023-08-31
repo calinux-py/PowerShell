@@ -1,4 +1,5 @@
 # Discord Channel + DM Screencapper README
+![](https://img.shields.io/badge/-PowerShell-blue)
 
 ## Overview
 
