@@ -1,4 +1,5 @@
 # PowerShell E-D Script README
+![](https://img.shields.io/badge/-PowerShell-blue)
 
 ## ⚠️ **WARNING: This script is meant for educational purposes ONLY. Misuse of this script may violate laws and regulations. Use it responsibly and at your own risk.** ⚠️
 
