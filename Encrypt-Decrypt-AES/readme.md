@@ -9,7 +9,6 @@ This set of PowerShell scripts allows you to easily encrypt and decrypt files us
   - [Encrypt-AES](#encrypt-aes)
   - [Decrypt-AES](#decrypt-aes)
 - [Example](#example)
-- [License](#license)
 
 ## Prerequisites
 
@@ -64,10 +63,3 @@ Here's a simple example of how to use these scripts to encrypt and then decrypt 
    ```
 
    This will decrypt the file and recover the original content.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-
-You can include this `readme.md` file in your project to provide clear instructions on how to use your PowerShell scripts for AES encryption and decryption.
