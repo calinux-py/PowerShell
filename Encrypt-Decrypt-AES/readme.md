@@ -1,4 +1,3 @@
-```markdown
 # PowerShell AES Encryption and Decryption
 
 This set of PowerShell scripts allows you to easily encrypt and decrypt files using the AES (Advanced Encryption Standard) algorithm. You can use these scripts to secure sensitive data by encrypting it and later decrypting it when needed.
