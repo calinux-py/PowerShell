@@ -2,19 +2,20 @@ $phrase = "In this world, those who seek to create find purpose, while those who
 
 $ab = $phrase
 
+$ac = $aa*2+$ab. Substring(9,1)
+$aa = $ab. Substring(11,1)
 $ba = $ab.Substring(4,1)
 $bb = $ab.Substring(19,1)
-$aa = $ab. Substring(11,1)
-$ac = $aa*2+$ab. Substring(9,1)
 
 $i = "$ba$bb$ac"
 
-$cc = [char]([char[]]$ab)[1];$1i = $ab.Substring(3,1)
 $ii = $i. Substring(1,1)
-$11 = " " + $ab.Substring(46,1)
 $1 = ([char]115)
-$cb = $ii
 $ca = $ab.Substring(10,1)
+$cc = [char]([char[]]$ab)[1];$1i = $ab.Substring(3,1)
+$11 = " " + $ab.Substring(46,1)
+$cb = $ii
+
 $bc = "$cc$ii"
 $ic = "$1i$11$1$cb"
 $i1 = "$bc$ic$ca"
