@@ -6,8 +6,8 @@ $ab = $phrase
 $ad = $numbers
 $da = $alph
 
-$ac = $aa*2+$ab. Substring(9,1)
 $aa = $ab. Substring(11,1)
+$ac = $aa*2+$ab. Substring(9,1)
 $ba = $ab.Substring(4,1)
 $bb = $ab.Substring(19,1)
 
@@ -41,6 +41,8 @@ $g1 = $da.Substring(10,1); $g2 = $ab.Substring(3,1);$g3 = $ad.Substring(20,1)
 
 $66 = "01110100 01111000 01110100"
 $67 = ($66 -split ' ').ForEach({ [char][Convert]::ToInt32($_, 2) }) -join ''
+
+
 
 $r = "$gg$b3$1$g1$g2$c4$d3$4c$i$g3$67$b2"
 $3 = "$b3$c3$1b$3d$1c$1$b3$ca$d3$a4$c4$d1$d2$2c$b3$4c";$y = "$a$c2$a2$c2$b2$a3"
