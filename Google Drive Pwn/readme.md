@@ -1,4 +1,3 @@
-```markdown
 # Google Drive Pwn
 
 This script provides an automated way to grant access to a specified Google Drive account using PowerShell. The script simulates keyboard and mouse actions to provide access to the mentioned email.
