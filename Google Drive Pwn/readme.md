@@ -1,32 +1,33 @@
+```markdown
 # Google Drive Pwn
 
-**Disclaimer: This script is provided for educational and informational purposes only. Ensure to comply with all applicable laws and use ethically.**
-
-## Description
-
-`Google Drive Pwn` is a PowerShell script designed to automate specific interactions with Google Drive through a web browser. **It's vital to underline the importance of responsible and ethical use of automation scripts and to ensure you are adhering to Google's use policies and any applicable local, state, and federal laws.**
-
-The script performs the following actions:
-1. Opens Google Drive in the default web browser.
-2. Simulates keyboard inputs to navigate through Google Drive UI.
-3. Optionally grants access to a specified email address.
+This script provides an automated way to grant access to a specified Google Drive account using PowerShell. The script simulates keyboard and mouse actions to provide access to the mentioned email.
 
 ## Prerequisites
-
-- PowerShell
-- Windows OS
-- Appropriate privileges to run PowerShell scripts
+- Windows OS with PowerShell.
+- `System.Windows.Forms` assembly should be available (usually comes with the .NET Framework).
 
 ## Usage
 
-**IMPORTANT: Before running, ensure to replace `"YOUREMAIL@gmail.com"` with the email you want to grant access to.**
+1. Copy the function `Access-Drive` into your PowerShell session or script file.
+2. Use the function by passing the email address you want to grant access to:
 
 ```powershell
-# Run script
-path\to\script\GoogleDrivePwn.ps1
+Access-Drive -em "your_email@example.com"
 ```
 
-### Parameters
+## Functionality
 
-- **drive URL**: A URL of the target Google Drive (default and additional URLs can be uncommented/added in the script).
-- **$word**: An email address that the script sends keys for to potentially grant access to certain Google Drive functionalities.
+- The function opens the Google Drive web page in the default browser.
+- It then navigates through the process of granting access to the specified email address.
+- At the end of the function, all browser windows with "Google Drive" in the title are forcibly closed.
+
+## Customization
+
+The script currently targets the primary Google Drive account (`https://drive.google.com/drive/u/0/my-drive`). If you wish to access other drive URLs, you can uncomment the respective lines in the script.
+
+## Limitations & Warnings
+
+1. Ensure you're logged into the correct Google account in the default browser before running the script.
+2. This method relies on simulated keystrokes. It might fail if the structure of the Google Drive webpage changes or if there are unexpected delays in loading.
+3. Be cautious when using scripts that automate browser activity, especially on important accounts. It's a good idea to test on non-critical accounts first.
