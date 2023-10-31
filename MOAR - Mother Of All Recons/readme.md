@@ -1,4 +1,4 @@
-# MOAR - Mother Of All Recon
+# MOAR - Mother Of All Recons
 
 MOAR is a PowerShell script built to gather an extensive amount of information about a Windows system. This includes but is not limited to, system configurations, network details, browsing history, recently accessed files, and much more.
 
