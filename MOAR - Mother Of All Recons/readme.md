@@ -27,7 +27,6 @@ AR -wh 'YOUR_DISCORD_WEBHOOK_URL'
 For example:
 
 ```powershell
-# This is a sample and should be replaced with your actual webhook URL.
 AR -wh 'https://discord.com/api/webhooks/xxxx/yyyy'
 ```
 
