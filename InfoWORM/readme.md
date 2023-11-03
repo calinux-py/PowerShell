@@ -2,7 +2,7 @@
 
 ## Disclaimer
 
-The `InfoWORM` PowerShell script is intended for educational and **ethical testing purposes only**. The author is not responsible for any misuse or damage that may occur from using this script. It is imperative that you only run this script in controlled environments where you have explicit permission to do so. Misuse of this script can result in significant damages to computer systems and data, and could lead to legal repercussions.
+The `InfoWORM` PowerShell script is intended for educational and **ethical testing purposes only**. The author is not responsible for any misuse or damage that may occur from using this script. It is imperative that you only run this script in controlled environments where you have explicit permission to do so. Misuse of this script could lead to legal repercussions.
 
 ## Overview
 
