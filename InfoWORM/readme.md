@@ -29,9 +29,6 @@ To use the script, follow these steps:
    Execute the script in a PowerShell environment with appropriate permissions.
 
 ```powershell
-# Ensure you have the execution policy set to allow the script to run.
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-# Run the script
 ./InfoWORM.ps1
 ```
 
