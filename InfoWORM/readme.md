@@ -36,7 +36,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 4. **Monitoring**  
-   Monitor the output in your Discord server to observe the behavior of the script.
+   Monitor the output in your Discord server to observe the behavior of the worm.
 
 ## Functionality
 
@@ -46,14 +46,4 @@ Here is a brief overview of the key functions in the script:
 - `Copy-FileToUSB`: Attempts to copy the script to a newly detected USB drive.
 - `Check-ForNewDrive`: Monitors for new drives and initiates the copy process if a new drive is detected.
 
-## Contributing
-
-If you would like to contribute to this project, please fork the repository and submit a pull request.
-
-## License
-
-This project is released under the MIT License. See the `LICENSE` file for more details.
-
 ---
-
-**Please note:** Again, it is crucial to understand that running this script outside of a controlled testing environment, without explicit permission, is not ethical and potentially illegal. Always follow the principle of "ethical hacking" when using tools like `InfoWORM`.
