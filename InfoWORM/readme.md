@@ -1,4 +1,4 @@
-# InfoWORM :computer_worm:
+# InfoWORM 🪱
 
 Welcome to the repository of InfoWORM, a potent PowerShell worm crafted for educational purposes only. The code herein represents a dangerous and rapidly spreading piece of malware that can infect virtually any system and replicate itself with alarming speed.
 
