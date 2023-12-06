@@ -25,31 +25,17 @@ AI-PowerShell offers several options to customize your interaction:
 - `/s`: Display the full message sent to OpenAI's API.
 - `/d`: Request detailed assistance (expands tokens and word count from OpenAI).
 - `/a`: Display the full message and request detailed assistance.
+- `/i`: Send a custom message to OpenAI's API.
 - `/help` or `/?`: Display the help message.
 
 ### Examples
 
-1. To request assistance with the last error message:
+   To request assistance with the last error message:
    ```powershell
    Ask-AI
    ```
 
-2. To display the full message sent to OpenAI's API:
-   ```powershell
-   Ask-AI /s
-   ```
-
-3. To request detailed assistance:
-   ```powershell
-   Ask-AI /d
-   ```
-
-4. To display the full message and request detailed assistance:
-   ```powershell
-   Ask-AI /a
-   ```
-
-5. To display the help message:
+   To display the help message:
    ```powershell
    Ask-AI /?
    ```
