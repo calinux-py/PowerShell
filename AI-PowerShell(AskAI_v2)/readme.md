@@ -14,7 +14,7 @@ Before you get started, make sure you have the following prerequisites:
 ## Installation
 
 1. Clone or download this repository to your local machine.
-2. Open the `AI-PowerShell.ps1` file.
+2. Open the `AskAI.ps1` file.
 3. Replace `'OPENAI API HERE'` with your actual OpenAI API key.
 4. Save the changes.
 
