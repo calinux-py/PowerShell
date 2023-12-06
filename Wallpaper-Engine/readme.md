@@ -4,7 +4,7 @@
 `Wallpaper-Engine` is a PowerShell script designed to automate the process of launching your Steam Wallpaper Engine application without the need to start the Steam app. This script helps in setting up your wallpaper, preventing it from being just a black screen.
 
 ## Installation
-To use this script, you can add it to your startup folder, the registry, or simply keep it on your desktop. Running the script is as simple as selecting the `.ps1` file.
+To use this script, you can add `wallpaper_AUTO-cali.ps1` to your startup folder, the registry, or simply keep it on your desktop. Running the script is as simple as selecting the `wallpaper_AUTO-cali.ps1`.
 Alternatively, execute `Run_on_BOOT.ps1` to automatically inject registry to auto-run Wallpaper Engine upon each computer boot (automatically run `wallpaper_AUTO-cali.ps1`)
 
 ## Usage
