@@ -23,7 +23,7 @@ Before you get started, make sure you have the following prerequisites:
 AI-PowerShell offers several options to customize your interaction:
 
 - `/s`: Display the full message sent to OpenAI's API.
-- `/d`: Request detailed assistance.
+- `/d`: Request detailed assistance (expands tokens and word count from OpenAI).
 - `/a`: Display the full message and request detailed assistance.
 - `/help` or `/?`: Display the help message.
 
