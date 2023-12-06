@@ -3,7 +3,7 @@ function Ask-AI {
         [string]$arg
     )
 
-    $apiKey = 'OPENAI API HERE'
+    $apiKey = 'YOUR OPENAI API'
     $apiEndpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions'
 
     $headers = @{
@@ -16,6 +16,7 @@ function Ask-AI {
     $LastUserInput = $null
     $showErrorInfo = $false
     $detailed = $false
+    $userInputMode = $false
     $help = @"
 
 `nAsk-AI is a PowerShell function crafted to simplify troubleshooting within PowerShell.
@@ -26,64 +27,60 @@ Options:
   /s: Display full message sent to OpenAI's API.
   /d: Request detailed assistance.
   /a: Display full message & request detailed assistance.
+  /i: Send a custom message to OpenAI's API.
 `n
 Example:
   > Ask-AI
+  > Ask-AI /?
   > Ask-AI /s
   > Ask-AI /d
   > Ask-AI /a
-  > Ask-AI /?
+  > Ask-AI /i
 `n
 "@
 
-    # Custom logic to process /s and /d
+    # Custom logic to process options
     if ($arg -eq "/s") {
         $showErrorInfo = $true
-    }
-
-    if ($arg -eq "/d") {
+    } elseif ($arg -eq "/d") {
         $detailed = $true
-    }
-
-    if ($arg -eq "/a") {
+    } elseif ($arg -eq "/a") {
         $showErrorInfo = $true
         $detailed = $true
-    }
-
-    if ($arg -eq "/help") {
+    } elseif ($arg -eq "/i") {
+        $userInputMode = $true
+    } elseif ($arg -eq "/help" -or $arg -eq "/?" -or $arg -eq "?") {
         $help
         return
     }
 
-    if ($arg -eq "/?") {
-        $help
-        return
-    }
+    # Handle user input mode
+    if ($userInputMode) {
+        Write-Host "User Input:" -ForegroundColor Yellow
+        $prompt = Read-Host
 
-    if ($arg -eq "?") {
-        $help
-        return
-    }
-
-    # Check for the most recent error message
-    if ($Error.Count -gt 0) {
-        $ErrorMessage = $Error[0].Exception.ToString()
-        $LastUserInput = $Error[0].InvocationInfo.Line
-
-        if ($showErrorInfo) {
-            Write-Host -ForegroundColor Yellow "`nError message: $ErrorMessage"
-            Write-Host -ForegroundColor Yellow "Last command: $LastUserInput"
-        }
+        $maxTokens = 80
     } else {
-        $LastUserInput = Read-Host
-    }
+        # Check for the most recent error message
+        if ($Error.Count -gt 0) {
+            $ErrorMessage = $Error[0].Exception.ToString()
+            $LastUserInput = $Error[0].InvocationInfo.Line
 
-    $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nProvide the correct command or syntax using less than 10 words."
-    $maxTokens = 80
+            if ($showErrorInfo) {
+                Write-Host -ForegroundColor Yellow "`nError message: $ErrorMessage"
+                Write-Host -ForegroundColor Yellow "Last command: $LastUserInput"
+            }
+        } else {
+            $LastUserInput = Read-Host
+        }
 
-    if ($detailed) {
-        $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nPlease provide a detailed explanation of the error and a solution with the correct command or syntax, using up to 50 words."
-        $maxTokens = 150
+        $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nProvide the correct command or syntax using less than 10 words."
+        $maxTokens = 80
+
+        if ($detailed) {
+            $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nPlease provide a detailed explanation of the error and a solution with the correct command or syntax, using up to 80 words."
+            $maxTokens = 250
+        }
     }
 
     $body = @{
@@ -104,5 +101,5 @@ Example:
 # Ask-AI /s
 # Ask-AI /d
 # Ask-AI /a
+# Ask-AI /i
 # Ask-AI /?
-# Ask-AI
