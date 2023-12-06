@@ -1,4 +1,4 @@
-# PowerShell script to find a file and add its path to the registry for auto-run at boot
+# PowerShell script to find wallpaper_AUTO-cali.ps1 and add its path to the registry for auto-run at boot
 
 # Define the file to search for
 $fileName = "wallpaper_AUTO-cali.ps1"
