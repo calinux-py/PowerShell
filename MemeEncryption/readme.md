@@ -1,7 +1,8 @@
 # MemeEncryption README.md
 
 ## Introduction
-This PowerShell script provides a unique way to encrypt and decrypt files using a custom algorithm.
+This PowerShell script provides a unique way to encrypt and decrypt files using a custom algorithm. 
+The goal was to test if custom encryption was more effective in avoiding AV detection.
 
 ## Features
 - **Custom Encryption Algorithm**: Uses a combination of XOR operations and a fixed key for encryption.
