@@ -19,7 +19,7 @@ function Access-Drive {
     [System.Windows.Forms.SendKeys]::SendWait("^(a)")
     Start-Sleep -Milliseconds 400
 
-    [System.Windows.Forms.SendKeys]::SendWait(".")
+    [System.Windows.Forms.SendKeys]::SendWait("^%a")
     Start-Sleep -Seconds 1.5
 
     # Enter email you want to grant access for
