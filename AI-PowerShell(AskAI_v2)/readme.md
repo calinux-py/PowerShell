@@ -1,6 +1,9 @@
 # AI-PowerShell (Ask-AI v.2)
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-blue)
+![Description](https://github.com/calinux-py/AI-Powershell/blob/main/2024-08-24%2014-28-38_3.gif?raw=true)
+
+
 
 AI-PowerShell (Ask-AI v.2) is a PowerShell function designed to simplify troubleshooting within PowerShell. With this tool, you can easily request assistance for resolving errors, rectifying syntax issues, or locating the right commands using the power of OpenAI's GPT-3 engine.
 
