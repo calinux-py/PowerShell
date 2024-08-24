@@ -3,15 +3,15 @@ function Ask-AI {
         [string]$arg
     )
 
-    $apiKey = 'YOUR OPENAI API'
-    $apiEndpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions'
+    $apiKey = 'YOUR OPENAI API HERE'
+    $apiEndpoint = 'https://api.openai.com/v1/chat/completions'
+
 
     $headers = @{
         'Authorization' = "Bearer $apiKey"
         'Content-Type'  = 'application/json'
     }
 
-    # Initialize variables
     $ErrorMessage = $null
     $LastUserInput = $null
     $showErrorInfo = $false
@@ -39,7 +39,6 @@ Example:
 `n
 "@
 
-    # Custom logic to process options
     if ($arg -eq "/s") {
         $showErrorInfo = $true
     } elseif ($arg -eq "/d") {
@@ -49,42 +48,52 @@ Example:
         $detailed = $true
     } elseif ($arg -eq "/i") {
         $userInputMode = $true
-    } elseif ($arg -eq "/help" -or $arg -eq "/?" -or $arg -eq "?") {
+    } elseif ($arg -eq "/help" -or $arg -eq "/?" -or $arg -eq "?" -or $arg -eq "help" -or $arg -eq "h" -or $arg -eq "/h") {
         $help
         return
     }
 
-    # Handle user input mode
+
     if ($userInputMode) {
         Write-Host "User Input:" -ForegroundColor Yellow
         $prompt = Read-Host
 
         $maxTokens = 80
     } else {
-        # Check for the most recent error message
         if ($Error.Count -gt 0) {
-            $ErrorMessage = $Error[0].Exception.ToString()
+            if ($Error.Count -gt 0 -and $Error[0] -ne $null) {
+                $ErrorMessage = $Error[0].ToString()
+            } else {
+                $ErrorMessage = "No recent errors detected."
+            }
+
             $LastUserInput = $Error[0].InvocationInfo.Line
 
             if ($showErrorInfo) {
-                Write-Host -ForegroundColor Yellow "`nError message: $ErrorMessage"
-                Write-Host -ForegroundColor Yellow "Last command: $LastUserInput"
+                Write-Host -ForegroundColor Yellow "`nError message: $ErrorMessage`n"
+                Write-Host -ForegroundColor Cyan "Last command: $LastUserInput`n"
             }
         } else {
             $LastUserInput = Read-Host
         }
 
-        $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nProvide the correct command or syntax using less than 10 words."
+        $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nProvide the correct command or syntax using less than 10 words. Do NOT use codeblocks. System: Windows OS"
         $maxTokens = 80
 
         if ($detailed) {
-            $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nPlease provide a detailed explanation of the error and a solution with the correct command or syntax, using up to 80 words."
+            $prompt = "Windows PowerShell error: $($ErrorMessage)`n`nLast Command: $($LastUserInput)`n`nPlease provide a detailed explanation of the error and a solution with the correct command or syntax, using up to 80 words. Do NOT use codeblocks. System: Windows OS"
             $maxTokens = 250
         }
     }
 
     $body = @{
-        'prompt'              = $prompt
+        'model'               = 'gpt-3.5-turbo-0125'
+        'messages'            = @(
+                                @{
+                                    'role'    = 'user'
+                                    'content' = $prompt
+                                }
+                                )
         'temperature'         = 1
         'max_tokens'          = $maxTokens
         'top_p'               = 1
@@ -92,9 +101,16 @@ Example:
         'presence_penalty'    = 0
     } | ConvertTo-Json
 
+
     $response = Invoke-RestMethod -Uri $apiEndpoint -Method 'POST' -Headers $headers -Body $body
 
-    Write-Host $response.choices[0].text -ForegroundColor Green "`n"
+    if ($response -ne $null -and $response.choices -ne $null) {
+        Write-Host $response.choices[0].message.content -ForegroundColor Green "`n"
+    } else {
+        Write-Host "`nNo response from API." -ForegroundColor Red
+    }
+
+
 }
 
 # Example of how to call the function
