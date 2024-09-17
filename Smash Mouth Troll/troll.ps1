@@ -1,4 +1,4 @@
-function Troll {
+function T {
     Add-Type -AssemblyName System.Windows.Forms
 
     $lyrics = @(
