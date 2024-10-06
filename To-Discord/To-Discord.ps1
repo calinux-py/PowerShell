@@ -1,6 +1,8 @@
+# Send the output of Powershell commands directly to a webhook. Example: ipconfig | To-Discord
+
 function To-Discord {
     param (
-        [string]$webhookUrl = 'https://discord.com/api/webhooks/1288689545218359317/qh08qb41zW9QJ_tiX4kZl4E7w-FfpbY0r8WzpLqH_oHXuCtdfnTBXKtLY-Tw5fYDRyGi'
+        [string]$webhookUrl = 'YOUR WEBHOOK'
     )
     
     $output = $input | Out-String
