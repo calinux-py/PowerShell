@@ -9,6 +9,7 @@
 - **Deep Numeric Obfuscation**: Converts numeric literals into complex arithmetic expressions.
 - **Advanced Mode**: Compresses the obfuscated code and wraps it in a self-extracting loader.
 - **SuperAdvanced Mode**: Compresses and encrypts the obfuscated script, requiring a password to execute.
+- **Polymorphic Output**: Each script generated is different.
 
 ## Usage
 ```powershell
