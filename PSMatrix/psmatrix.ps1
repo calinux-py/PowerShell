@@ -5,6 +5,8 @@ $width = [Console]::WindowWidth
 $height = [Console]::WindowHeight
 $text = "C a l i N u X"
 
+$versionText = $PSVersionTable.PSVersion.ToString()
+
 $drops = 0..($width - 1) | ForEach-Object { Get-Random -Minimum 0 -Maximum $height }
 cls
 
@@ -30,6 +32,10 @@ while ($true) {
     $centerY = [Math]::Floor($height / 2)
     [Console]::SetCursorPosition($centerX, $centerY)
     Write-Host $text -ForegroundColor Red -NoNewline
+
+    $centerXVersion = [Math]::Floor(($width - $versionText.Length) / 2)
+    [Console]::SetCursorPosition($centerXVersion, $centerY + 1)
+    Write-Host $versionText -ForegroundColor Red -NoNewline
     
     Start-Sleep -Milliseconds 80
 }
