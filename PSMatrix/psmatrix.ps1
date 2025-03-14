@@ -10,7 +10,14 @@ $versionText = $PSVersionTable.PSVersion.ToString()
 $drops = 0..($width - 1) | ForEach-Object { Get-Random -Minimum 0 -Maximum $height }
 cls
 
+$startTime = Get-Date
+
 while ($true) {
+    if (((Get-Date) - $startTime).TotalSeconds -ge 6) {
+        cls
+        break
+    }
+    
     if ([Console]::KeyAvailable) {
         [Console]::ReadKey($true) | Out-Null
         cls
