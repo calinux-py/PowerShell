@@ -84,7 +84,6 @@ BIO:
 ## Requirements
 
 - PowerShell 5.1 or later
-- Internet connection
 
 ## Author
 
@@ -93,3 +92,4 @@ calinux
 ## Note
 
 This scrapes public profile data only. Private accounts will show limited info.
+
