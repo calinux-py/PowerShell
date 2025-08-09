@@ -33,7 +33,7 @@ Get-TikTokProfile
 
 ==================================================
 
-&nbsp; TIKTOK PROFILE: @someuser
+TIKTOK PROFILE: @someuser
 
 ==================================================
 
@@ -41,41 +41,37 @@ Get-TikTokProfile
 
 BASIC INFO:
 
-&nbsp; Username: @someuser
+Username: @someuser
 
-&nbsp; Display Name: Some User
+Display Name: Some User
 
-&nbsp; User ID: 123456789
+User ID: 123456789
 
-&nbsp; Verified: ✗ No
-
-
+Verified: ✗ No
 
 STATISTICS:
 
-&nbsp; Followers: 15420
+Followers: 15420
 
-&nbsp; Following: 234
+Following: 234
 
-&nbsp; Total Likes: 89653
+Total Likes: 89653
 
-&nbsp; Videos: 127
+Videos: 127
 
-&nbsp; Friends: 45
-
-
+Friends: 45
 
 ACCOUNT SETTINGS:
 
-&nbsp; Private Account: No (Public)
+Private Account: No (Public)
 
-&nbsp; Account Created: March 15, 2021
+Account Created: March 15, 2021
 
 
 
 BIO:
 
-&nbsp; Just here for the memes 🎭
+Just here for the memes 🎭
 
 ==================================================
 
@@ -92,4 +88,5 @@ calinux
 ## Note
 
 This scrapes public profile data only. Private accounts will show limited info.
+
 
