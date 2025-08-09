@@ -21,7 +21,6 @@ It checks whether a domain is hosted on Microsoft, retrieves tenant details, and
 
 ## Requirements
 - PowerShell 5.1+ or PowerShell Core  
-- Internet access (queries Microsoft's login endpoints)
 
 ---
 
@@ -52,4 +51,5 @@ $results = Get-MicrosoftOSINT -Domain "contoso.com" -OutVariable results
 ✓ Microsoft Graph host: graph.microsoft.com
 ...
 === END REPORT ===
+
 ```
