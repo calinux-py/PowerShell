@@ -1,54 +1,33 @@
-\# TikTok Scraper
-
-
+# TikTok Scraper
 
 A simple PowerShell script to fetch and display TikTok profile information directly from the command line.
 
+## What it does
 
+- Grabs profile data for any public TikTok user
+- Shows follower count, likes, videos, and other stats
+- Displays account info like verification status and creation date
+- Works without any API keys or authentication
 
-\## What it does
-
-
-
-\- Grabs profile data for any public TikTok user
-
-\- Shows follower count, likes, videos, and other stats
-
-\- Displays account info like verification status and creation date
-
-\- Works without any API keys or authentication
-
-
-
-\## Usage
-
-
+## Usage
 
 ```powershell
 
-\# Load the function
+# Load the function
 
 . .\\Get-TikTokProfile.ps1
 
-
-
-\# Fetch a profile
+# Fetch a profile
 
 Get-TikTokProfile "username"
 
-
-
-\# Or just run it and enter username when prompted
+# Or just run it and enter username when prompted
 
 Get-TikTokProfile
 
 ```
 
-
-
-\## Example output
-
-
+## Example output
 
 ```
 
@@ -102,29 +81,15 @@ BIO:
 
 ```
 
+## Requirements
 
+- PowerShell 5.1 or later
+- Internet connection
 
-\## Requirements
-
-
-
-\- PowerShell 5.1 or later
-
-\- Internet connection
-
-
-
-\## Author
-
-
+## Author
 
 calinux
 
-
-
-\## Note
-
-
+## Note
 
 This scrapes public profile data only. Private accounts will show limited info.
-
